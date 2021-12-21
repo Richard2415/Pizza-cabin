@@ -1,15 +1,13 @@
 require("dotenv").config();
 var express = require("express");
-const mongoose = require("mongoose");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const cors = require("cors");
 
 // MongoDB
-const PORT = process.env.PORT || 8080
-
-mongoose.connect(process.env.MONGODB_URI, {
+var mongoose = require("mongoose");
+mongoose.connect(process.env.MONGO_URL, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });
@@ -22,7 +20,6 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 
 
 if (process.env.NODE_ENV === 'production') {
